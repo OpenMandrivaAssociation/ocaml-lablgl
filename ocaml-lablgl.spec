@@ -1,7 +1,7 @@
 %define base_name	lablgl
 %define name		ocaml-%{base_name}
 %define version		1.02
-%define release		%mkrel 13
+%define release		%mkrel 14
 
 Name:		%{name}
 Version:	%{version}
@@ -11,6 +11,7 @@ License:    BSD
 Group:      System/Libraries
 URL:        http://wwwfun.kurims.kyoto-u.ac.jp/soft/olabl/lablgl.html
 Source:     http://wwwfun.kurims.kyoto-u.ac.jp/soft/olabl/dist/lablgl-%{version}.tar.bz2
+Patch:      %{name}-1.02-tk8.5.patch
 BuildRequires:  ocaml
 BuildRequires:  camlp4
 BuildRequires:  ocaml-labltk
@@ -20,9 +21,10 @@ BuildRequires:  X11-devel
 BuildRequires:  Mesa-common-devel
 BuildRoot:      %{_tmppath}/%{name}-%{version}
 
-%package -n %{name}-devel
+%package devel
 Summary:    LablGL is an OpenGL interface for Objective Caml
 Group:      System/Libraries
+Requires:   %{name} = %{version}-%{release}
 
 %description
 LablGL is is an Objective Caml interface to OpenGL. Support is included for use
@@ -40,14 +42,15 @@ Unix, Solaris...), with XFree86 GLX extension, or with open-source Mesa.
 
 %prep
 %setup -q -n lablgl-%version
+%patch0 -p 1
 
 %build
 cat > Makefile.config << EOF
 CAMLC = ocamlc.opt
 CAMLOPT = ocamlopt.opt
 BINDIR = %{_bindir}
-XINCLUDES = -I%{_prefix}/X11R6/include
-XLIBS = -L%{_prefix}/X11R6/%{_lib} -lXext -lXmu -lX11 -lXi
+XINCLUDES = -I%{_includedir}
+XLIBS = -L%{_libdir} -lXext -lXmu -lX11 -lXi
 TKINCLUDES = -I%{_includedir}
 GLLIBS = -lGL -lGLU
 GLUTLIBS = -lglut
@@ -56,35 +59,30 @@ RANLIB = ranlib
 COPTS = $RPM_OPT_FLAGS
 EOF
 
-make -j1 all opt
+make all opt
 
 %install
 rm -rf %{buildroot}
-mkdir -p %{buildroot}/%{_bindir} %{buildroot}/%{_libdir}/ocaml/stublibs
-make\
-   PREFIX=%{buildroot}/%{_prefix}\
+install -d -m 755 %{buildroot}%{_bindir}
+install -d -m 755 %{buildroot}%{ocaml_sitelib}/stublibs
+make \
    BINDIR=%{buildroot}/%{_bindir}\
-   LIBDIR=%{buildroot}/%{_libdir}/ocaml\
-   INSTALLDIR=%{buildroot}/%{_libdir}/ocaml/lablGL\
-   DLLDIR=%{buildroot}/%{_libdir}/ocaml/stublibs\
+   INSTALLDIR=%{buildroot}/%{ocaml_sitelib}/lablGL\
+   DLLDIR=%{buildroot}/%{ocaml_sitelib}/stublibs\
    install
 
 %clean
 rm -rf %{buildroot}
 
-%post -p /sbin/ldconfig
-
-%postun -p /sbin/ldconfig
-
 %files
 %defattr(-,root,root)
-%doc COPYRIGHT
-%{_libdir}/ocaml/stublibs/*
+%doc COPYRIGHT CHANGES README
+%dir %{ocaml_sitelib}/lablGL
+%{ocaml_sitelib}/lablGL/*.cmi
+%{ocaml_sitelib}/stublibs/*
 
-%files -n %{name}-devel
+%files devel
 %defattr(-,root,root)
-%doc CHANGES README
 %{_bindir}/*
-%{_libdir}/ocaml/lablGL
-
-
+%{ocaml_sitelib}/lablGL/*
+%exclude %{ocaml_sitelib}/lablGL/*.cmi
