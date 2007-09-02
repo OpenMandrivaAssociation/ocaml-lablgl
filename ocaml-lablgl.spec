@@ -1,7 +1,7 @@
 %define base_name	lablgl
 %define name		ocaml-%{base_name}
 %define version		1.02
-%define release		%mkrel 14
+%define release		%mkrel 15
 
 Name:		%{name}
 Version:	%{version}
@@ -67,7 +67,7 @@ install -d -m 755 %{buildroot}%{_bindir}
 install -d -m 755 %{buildroot}%{ocaml_sitelib}/stublibs
 make \
    BINDIR=%{buildroot}/%{_bindir}\
-   INSTALLDIR=%{buildroot}/%{ocaml_sitelib}/lablGL\
+   INSTALLDIR=%{buildroot}/%{ocaml_sitelib}/lablgl\
    DLLDIR=%{buildroot}/%{ocaml_sitelib}/stublibs\
    install
 
@@ -77,12 +77,12 @@ rm -rf %{buildroot}
 %files
 %defattr(-,root,root)
 %doc COPYRIGHT CHANGES README
-%dir %{ocaml_sitelib}/lablGL
-%{ocaml_sitelib}/lablGL/*.cmi
+%dir %{ocaml_sitelib}/lablgl
+%{ocaml_sitelib}/lablgl/*.cmi
 %{ocaml_sitelib}/stublibs/*
 
 %files devel
 %defattr(-,root,root)
 %{_bindir}/*
-%{ocaml_sitelib}/lablGL/*
-%exclude %{ocaml_sitelib}/lablGL/*.cmi
+%{ocaml_sitelib}/lablgl/*
+%exclude %{ocaml_sitelib}/lablgl/*.cmi
