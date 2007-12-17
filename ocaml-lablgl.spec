@@ -19,7 +19,6 @@ BuildRequires:  tcl-devel
 BuildRequires:  tk-devel
 BuildRequires:  X11-devel
 BuildRequires:  Mesa-common-devel
-BuildRoot:      %{_tmppath}/%{name}-%{version}
 
 %package devel
 Summary:    LablGL is an OpenGL interface for Objective Caml
