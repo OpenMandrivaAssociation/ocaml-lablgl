@@ -6,7 +6,7 @@
 Name:		%{name}
 Version:	%{version}
 Release:	%{release}
-Summary:    LablGL is an OpenGL interface for Objective Caml
+Summary:    OpenGL interface for Objective Caml
 License:    BSD
 Group:      System/Libraries
 URL:        http://wwwfun.kurims.kyoto-u.ac.jp/soft/olabl/lablgl.html
@@ -22,7 +22,7 @@ BuildRequires:  Mesa-common-devel
 BuildRoot:      %{_tmppath}/%{name}-%{version}
 
 %package devel
-Summary:    LablGL is an OpenGL interface for Objective Caml
+Summary:    OpenGL interface for Objective Caml
 Group:      System/Libraries
 Requires:   %{name} = %{version}-%{release}
 
