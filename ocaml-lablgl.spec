@@ -1,7 +1,7 @@
 %define base_name	lablgl
 %define name		ocaml-%{base_name}
-%define version		1.02
-%define release		%mkrel 19
+%define version		1.03
+%define release		%mkrel 1
 
 Name:		%{name}
 Version:	%{version}
@@ -10,7 +10,7 @@ Summary:    OpenGL interface for Objective Caml
 License:    BSD
 Group:      System/Libraries
 URL:        http://wwwfun.kurims.kyoto-u.ac.jp/soft/olabl/lablgl.html
-Source:     http://wwwfun.kurims.kyoto-u.ac.jp/soft/olabl/dist/lablgl-%{version}.tar.bz2
+Source:     http://wwwfun.kurims.kyoto-u.ac.jp/soft/olabl/dist/lablgl-%{version}.tar.gz
 Patch:      %{name}-1.02-tk8.5.patch
 BuildRequires:  ocaml
 BuildRequires:  camlp4
