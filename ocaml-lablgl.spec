@@ -1,6 +1,6 @@
 %define base_name	lablgl
 
-%define rel		2
+%define rel		3
 %define cvs		20081204
 # CVSROOT=:pserver:anoncvs@camlcvs.inria.fr:/caml cvs login
 # (empty password)
@@ -80,12 +80,14 @@ make all opt
 %install
 rm -rf %{buildroot}
 install -d -m 755 %{buildroot}%{_bindir}
-install -d -m 755 %{buildroot}%{ocaml_sitelib}/stublibs
+install -d -m 755 %{buildroot}%{_libdir}/ocaml/stublibs
 make \
-   BINDIR=%{buildroot}/%{_bindir}\
-   INSTALLDIR=%{buildroot}/%{ocaml_sitelib}/lablgl\
-   DLLDIR=%{buildroot}/%{ocaml_sitelib}/stublibs\
+   BINDIR=%{buildroot}%{_bindir}\
+   INSTALLDIR=%{buildroot}%{_libdir}/ocaml/lablgl\
+   DLLDIR=%{buildroot}%{_libdir}/ocaml/stublibs\
    install
+
+rm -f %{buildroot}%{_libdir}/ocaml/lablgl/*.ml
 
 %clean
 rm -rf %{buildroot}
@@ -93,12 +95,15 @@ rm -rf %{buildroot}
 %files
 %defattr(-,root,root)
 %doc COPYRIGHT CHANGES README
-%dir %{ocaml_sitelib}/lablgl
-%{ocaml_sitelib}/lablgl/*.cmi
-%{ocaml_sitelib}/stublibs/*
+%dir %{_libdir}/ocaml/lablgl
+%{_libdir}/ocaml/lablgl/*.cmi
+%{_libdir}/ocaml/lablgl/*.cma
+%{_libdir}/ocaml/stublibs/*.so
 
 %files devel
 %defattr(-,root,root)
 %{_bindir}/*
-%{ocaml_sitelib}/lablgl/*
-%exclude %{ocaml_sitelib}/lablgl/*.cmi
+%{_libdir}/ocaml/lablgl/*.a
+%{_libdir}/ocaml/lablgl/*.cmx
+%{_libdir}/ocaml/lablgl/*.cmxa
+%{_libdir}/ocaml/lablgl/*.mli
