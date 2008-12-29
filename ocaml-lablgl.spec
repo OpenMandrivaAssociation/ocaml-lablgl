@@ -1,6 +1,6 @@
 %define base_name	lablgl
 
-%define rel		3
+%define rel		4
 %define cvs		20081204
 # CVSROOT=:pserver:anoncvs@camlcvs.inria.fr:/caml cvs login
 # (empty password)
