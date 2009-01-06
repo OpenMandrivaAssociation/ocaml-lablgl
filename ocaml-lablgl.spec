@@ -136,3 +136,5 @@ rm -rf %{buildroot}
 %{_libdir}/ocaml/lablGL/*.cmx
 %{_libdir}/ocaml/lablGL/*.cmxa
 %{_libdir}/ocaml/lablGL/*.mli
+%exclude %{_bindir}/lablgl
+%exclude %{_bindir}/lablglut
