@@ -20,7 +20,7 @@ Version:	1.04
 Release:	%{release}
 Summary:	OpenGL interface for Objective Caml
 License:	BSD
-Group:		System/Libraries
+Group:		Development/Other
 URL:		http://wwwfun.kurims.kyoto-u.ac.jp/soft/olabl/lablgl.html
 Source0:	http://wwwfun.kurims.kyoto-u.ac.jp/soft/olabl/dist/%{distname}
 Patch0:		lablgl-1.0.4-tcl86.patch
@@ -35,7 +35,7 @@ BuildRoot:	%{_tmppath}/%{name}-%{version}
 
 %package devel
 Summary:	OpenGL interface for Objective Caml
-Group:		System/Libraries
+Group:		Development/Other
 Requires:	%{name} = %{version}-%{release}
 
 %description
