@@ -1,6 +1,6 @@
 %define base_name	lablgl
 
-%define rel		7
+%define rel		8
 %define cvs		20081204
 # CVSROOT=:pserver:anoncvs@camlcvs.inria.fr:/caml cvs login
 # (empty password)
@@ -8,11 +8,11 @@
 %if %cvs
 %define distname	%{base_name}-%{cvs}.tar.lzma
 %define dirname		lablGL
-%define release		%mkrel 0.%{cvs}.%{rel}
+%define release		0.%{cvs}.%{rel}
 %else
 %define distname	%{base_name}-%{version}.tar.gz
 %define dirname		%{base_name}-%{version}
-%define release		%mkrel %{rel}
+%define release		%{rel}
 %endif
 
 Name:		ocaml-%{base_name}
