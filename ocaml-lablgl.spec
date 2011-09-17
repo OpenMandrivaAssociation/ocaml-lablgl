@@ -1,17 +1,19 @@
 %define base_name	lablgl
+%define srcname		lablGL
 
-%define rel		8
-%define cvs		20081204
+%define rel		9
+#define cvs		20081204
+%define	cvs		0
 # CVSROOT=:pserver:anoncvs@camlcvs.inria.fr:/caml cvs login
 # (empty password)
 # cvs co bazar-ocaml/lablGL
-%if %cvs
+%if %{cvs}
 %define distname	%{base_name}-%{cvs}.tar.lzma
-%define dirname		lablGL
+%define srcdir		lablGL
 %define release		0.%{cvs}.%{rel}
 %else
 %define distname	%{base_name}-%{version}.tar.gz
-%define dirname		%{base_name}-%{version}
+%define srcdir		%{srcname}-%{version}
 %define release		%{rel}
 %endif
 
@@ -53,7 +55,7 @@ It can be used either with proprietary OpenGL implementations (SGI, Digital
 Unix, Solaris...), with XFree86 GLX extension, or with open-source Mesa.
 
 %prep
-%setup -q -n %{dirname}
+%setup -q -n %{srcdir}
 %patch0 -p1 -b .tcl86
 
 cp -f %{_includedir}/tk%{tcl_version}/generic/tkInt.h Togl/src/Togl/tkInt%{tcl_version}.h
