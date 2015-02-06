@@ -4,7 +4,7 @@
 Summary:	OpenGL interface for OCaml
 Name:		ocaml-%{modname}
 Version:	1.05
-Release:	1
+Release:	2
 License:	BSD
 Group:		Development/Other
 Url:		http://wwwfun.kurims.kyoto-u.ac.jp/soft/olabl/lablgl.html
