@@ -7,7 +7,7 @@ Version:	1.05
 Release:	2
 License:	BSD
 Group:		Development/Other
-Url:		http://wwwfun.kurims.kyoto-u.ac.jp/soft/olabl/lablgl.html
+Url:		https://wwwfun.kurims.kyoto-u.ac.jp/soft/olabl/lablgl.html
 Source0:	http://wwwfun.kurims.kyoto-u.ac.jp/soft/olabl/dist/%{modname}-%{version}.tar.gz
 BuildRequires:	camlp4
 BuildRequires:	ocaml
